@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Angular App",
+      "type": "chrome",
+      "request": "launch",
+      "url": "https://localhost:4200",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "npm: start"
+    }
+  ]
+}

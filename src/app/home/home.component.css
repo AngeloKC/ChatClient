@@ -1,0 +1,28 @@
+#table-container {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+}
+
+table {
+    margin: 3% auto auto auto;
+    width: 100%;
+    min-width: 800px;
+}
+
+.mat-row {
+    height: 25px;
+}
+
+.mat-cell {
+    padding: 4px 8px 4px 0;
+}
+
+p {
+    text-align: center;
+}
+
+.card-section {
+    margin: 1%;
+    padding: 5%;
+}

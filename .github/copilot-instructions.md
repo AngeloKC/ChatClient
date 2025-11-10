@@ -21,6 +21,7 @@ Files with these commands: `package.json`, `angular.json`.
   - `src/app/auth-config.ts` contains `msalConfig`, `loginRequest`, and `protectedResources` used by the MSAL factories.
   - `app.config.ts` defines MSAL factories (MSAL_INSTANCE, MSAL_GUARD_CONFIG, MSAL_INTERCEPTOR_CONFIG) and registers `MsalInterceptor` as an HTTP interceptor.
   - **CRITICAL**: MSAL initialization happens via `APP_INITIALIZER` to ensure MSAL is ready before any API calls.
+  - **CRITICAL**: Uses popup interaction mode consistently (both guard and interceptor set to `InteractionType.Popup`).
   - Protected resource mapping is implemented in `MSALInterceptorConfigFactory()` — update both `protectedResources` and that map when adding new backends.
 - Chat feature:
   - UI component: `src/app/chat/chat.ts` (component class). Template is `src/app/chat/chat.html` and styles `chat.css`.
@@ -35,6 +36,8 @@ Files with these commands: `package.json`, `angular.json`.
 - HTTP & auth:
   - Use `HttpClient` and return Observables (see `ChatService.sendMessage()` returning `Observable<ChatResponse>`).
   - For new API endpoints, add the endpoint and scopes to `protectedResources` in `auth-config.ts` and ensure the `protectedResourceMap` in `app.config.ts` includes the new endpoint with the correct HTTP methods and scopes.
+  - MSAL uses popup interaction mode - avoid redirect-based flows.
+  - Always use `takeUntil()` with a destroy subject in components that subscribe to MSAL events.
 - Dev assets: static assets are in the `public/` folder (configured in `angular.json`).
 
 ## Integration points and external dependencies

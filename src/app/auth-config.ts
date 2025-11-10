@@ -1,4 +1,4 @@
-/**
+`/**
  * This file contains authentication parameters. Contents of this file
  * is roughly the same across other MSAL.js libraries. These parameters
  * are used to initialize Angular and MSAL Angular configurations in
@@ -19,8 +19,8 @@ export const msalConfig: Configuration = {
     {
         clientId: 'e55bfe19-bf5c-420d-aa1c-2826bde639f5', // Replace the placeholder with your application ID
         authority: 'https://login.microsoftonline.com/a974a274-7768-4644-b912-ad81f852c7ad', // Replace the placeholder with your tenant subdomain
-        redirectUri: '/auth', // Points to window.location.origin by default. You must register this URI on Microsoft Entra admin center/App Registration.
-        postLogoutRedirectUri: 'http://localhost:4200/', // Points to window.location.origin by default
+        redirectUri: '/', // For popup mode, use root path
+        postLogoutRedirectUri: '/', // Points to root after logout
     },
     cache: {
         cacheLocation: BrowserCacheLocation.LocalStorage, // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO between tabs.
@@ -62,5 +62,5 @@ export const protectedResources = {
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest = {
-    scopes: []
+    scopes: ['openid', 'profile', 'email']
 };

@@ -1,4 +1,4 @@
-`/**
+/**
  * This file contains authentication parameters. Contents of this file
  * is roughly the same across other MSAL.js libraries. These parameters
  * are used to initialize Angular and MSAL Angular configurations in

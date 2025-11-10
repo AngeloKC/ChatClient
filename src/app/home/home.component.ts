@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
@@ -25,7 +24,7 @@ function createClaimsTable(claims: any): any[] {
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [CommonModule, MatTableModule],
+    imports: [CommonModule],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })

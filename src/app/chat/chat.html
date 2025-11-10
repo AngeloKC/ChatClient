@@ -1,50 +1,94 @@
-<div class="chat-container">
-  <div class="chat-header">
-    <h1>SimpleChatBot</h1>
-    <p>Ask me anything!</p>
-  </div>
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    <div class="col-12">
+      <!-- Chat Header -->
+      <div class="card mt-3">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">
+            <i class="bi bi-robot me-2"></i>
+            SimpleChatBot
+          </h4>
+          <small class="text-white-50">Ask me anything!</small>
+        </div>
 
-  <div class="messages-container">
-    <div *ngFor="let msg of messages" 
-         class="message" 
-         [class.user-message]="!msg.isBot"
-         [class.bot-message]="msg.isBot">
-      <div class="message-content">
-        <div class="message-avatar">{{ msg.isBot ? '🤖' : '👤' }}</div>
-        <div class="message-text">{{ msg.message }}</div>
-      </div>
-      <div class="message-time">{{ msg.timestamp | date:'short' }}</div>
-    </div>
-    
-    <div *ngIf="isLoading" class="message bot-message">
-      <div class="message-content">
-        <div class="message-avatar">🤖</div>
-        <div class="message-text">
-          <div class="typing-indicator">
-            <span></span>
-            <span></span>
-            <span></span>
+        <!-- Messages Container -->
+        <div class="card-body p-0" style="height: 60vh; overflow-y: auto;">
+          <div class="d-flex flex-column p-3">
+            <!-- Message Loop -->
+            <div *ngFor="let msg of messages" 
+                 class="mb-3"
+                 [class.align-self-end]="!msg.isBot"
+                 [class.align-self-start]="msg.isBot">
+              <div class="d-flex align-items-start gap-2"
+                   [class.flex-row-reverse]="!msg.isBot">
+                <!-- Avatar -->
+                <div class="rounded-circle d-flex align-items-center justify-content-center"
+                     [class.bg-primary]="msg.isBot"
+                     [class.bg-secondary]="!msg.isBot"
+                     style="width: 40px; height: 40px; flex-shrink: 0;">
+                  <span class="text-white">{{ msg.isBot ? '🤖' : '👤' }}</span>
+                </div>
+                
+                <!-- Message Content -->
+                <div class="max-w-75">
+                  <div class="rounded p-2 mb-1"
+                       [class.bg-light]="msg.isBot"
+                       [class.bg-primary]="!msg.isBot"
+                       [class.text-dark]="msg.isBot"
+                       [class.text-white]="!msg.isBot">
+                    {{ msg.message }}
+                  </div>
+                  <small class="text-muted">{{ msg.timestamp | date:'short' }}</small>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Loading Indicator -->
+            <div *ngIf="isLoading" class="align-self-start mb-3">
+              <div class="d-flex align-items-start gap-2">
+                <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                     style="width: 40px; height: 40px;">
+                  <span class="text-white">🤖</span>
+                </div>
+                <div class="bg-light rounded p-2">
+                  <div class="typing-indicator">
+                    <span class="bg-secondary rounded-circle d-inline-block me-1" style="width: 8px; height: 8px; animation: typing 1.4s infinite;"></span>
+                    <span class="bg-secondary rounded-circle d-inline-block me-1" style="width: 8px; height: 8px; animation: typing 1.4s infinite 0.2s;"></span>
+                    <span class="bg-secondary rounded-circle d-inline-block" style="width: 8px; height: 8px; animation: typing 1.4s infinite 0.4s;"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Error Message -->
+            <div *ngIf="error" class="alert alert-danger" role="alert">
+              <i class="bi bi-exclamation-triangle me-2"></i>
+              {{ error }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Input Container -->
+        <div class="card-footer">
+          <div class="input-group">
+            <input 
+              type="text" 
+              class="form-control"
+              [(ngModel)]="newMessage" 
+              (keypress)="onKeyPress($event)"
+              placeholder="Type your message..."
+              [disabled]="isLoading">
+            <button 
+              class="btn btn-primary"
+              type="button"
+              (click)="sendMessage()" 
+              [disabled]="isLoading || !newMessage.trim()">
+              <i class="bi bi-send me-1"></i>
+              Send
+            </button>
           </div>
         </div>
       </div>
     </div>
-
-    <div *ngIf="error" class="error-message">{{ error }}</div>
-  </div>
-
-  <div class="input-container">
-    <input 
-      type="text" 
-      [(ngModel)]="newMessage" 
-      (keypress)="onKeyPress($event)"
-      placeholder="Type your message..."
-      [disabled]="isLoading"
-      class="message-input">
-    <button 
-      (click)="sendMessage()" 
-      [disabled]="isLoading || !newMessage.trim()"
-      class="send-button">
-      Send
-    </button>
   </div>
 </div>

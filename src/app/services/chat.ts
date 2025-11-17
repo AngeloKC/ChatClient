@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ChatRequest, ChatResponse } from '../models/chat.model';
-
+  
 @Injectable({
   providedIn: 'root',
 })
 export class ChatService {
-  private apiUrl = 'https://localhost:7119/api/chat';
+  private apiUrl = 'https://chatapimgmtsvc.azure-api.net/api/chat/send'; //https://localhost:7119/api/chat';
 
   constructor(private http: HttpClient) {}
 

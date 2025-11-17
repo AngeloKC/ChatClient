@@ -7,7 +7,7 @@ import { ChatRequest, ChatResponse } from '../models/chat.model';
   providedIn: 'root',
 })
 export class ChatService {
-  private apiUrl = 'https://chatapimgmtsvc.azure-api.net/api/chat'; //https://localhost:7119/api/chat';
+  private apiUrl = 'https://chatapi20251116203909.azurewebsites.net'; // 'https://chatapimgmtsvc.azure-api.net/api/chat'; //https://localhost:7119/api/chat';
 
   constructor(private http: HttpClient) {}
 

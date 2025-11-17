@@ -47,7 +47,7 @@ export const msalConfig: Configuration = {
  */
 export const protectedResources = {
     chatAPI: {
-        endpoint: 'https://chatapimgmtsvc.azure-api.net/api/chat', //'https://localhost:7119/api/chat',
+        endpoint: 'https://chatapi20251116203909.azurewebsites.net/api/chat', //https://chatapimgmtsvc.azure-api.net/api/chat', //'https://localhost:7119/api/chat',
         scopes: {
             read: ['api://7ce6aeb5-4bda-40a3-87bf-db465aaa31ec/Chat.Read'],
             write: ['api://7ce6aeb5-4bda-40a3-87bf-db465aaa31ec/Chat.ReadWrite'],

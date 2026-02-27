@@ -6,6 +6,7 @@ import { ChatMessage } from '../models/chat.model';
 
 @Component({
   selector: 'app-chat',
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './chat.html',
   styleUrl: './chat.css',
